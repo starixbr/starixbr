@@ -1,0 +1,36 @@
+cadastro={}
+cadastros=[]
+mulheres=[]
+s=m=0
+while True:
+    cadastro.clear()
+    cadastro['nome']=str(input('Nome: '))
+    cadastro['sexo']=str(input('Sexo [M/F]: ').upper())
+    if cadastro['sexo']!='M' and cadastro['sexo']!='F':
+        print('ERRO! Por favorm digite apeanas M ou F.')
+        cadastro['sexo'] = str(input('Sexo [M/F]: ').upper())
+    if cadastro['sexo']=='F':
+        mulheres.append(cadastro['nome'])
+    cadastro['idade']=int(input('Idade: '))
+    s+=cadastro['idade']
+    cadastros.append(cadastro.copy())
+    continuar=str(input('Quer continuar? [S/N]: ').upper())
+    if continuar!='S' and continuar!='N':
+        print('ERRO! Responda apenas S ou N.')
+        continuar = str(input('Quer continuar? [S/N]: ').upper())
+    if continuar=='N':
+        break
+
+print('='*50)
+
+print(f'A) Ao todo temos {len(cadastros)} pessoas cadastradas.')
+m=s/len(cadastros)
+print(f'B) A média de idade é de {m:.2f} anos')
+print(f'C) As mulheres cadastradas foram {mulheres}')
+print(f'D) Lista das pessoas que estão acima da média:')
+for p in cadastros:
+    if p['idade']>=m:
+        for k,v in p.items():
+            print(f'{k} = {v}',end='; ')
+        print()
+print('<<ENCERRADO>>')
